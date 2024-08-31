@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng Nhập</title>
+    
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #141414;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+form {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
+}
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #333;
+    color: #ffffff;
+}
+input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #888;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e50914;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #f40612;
+}
+p {
+    margin-top: 20px;
+    text-align: center;
+}
+a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+    color: #e50914;
+    display: none; /* Ẩn `ul` mặc định */
+}
+
+ul.show {
+    display: block; /* Hiển thị `ul` khi có thông báo */
+}
+
+</style>
+<body>
+    <h2>Đăng Nhập Tài Khoản</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="show">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <ul>
+          <!-- Danh sách trống khi không có thông báo -->
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form action="/login" method="POST">
+        <input type="text" name="username" placeholder="Tên người dùng" required><br>
+        <input type="password" name="password" placeholder="Mật khẩu" required><br>
+        <button type="submit">Đăng Nhập</button>
+    </form>
+    <p>Chưa có tài khoản? <a href="/signup">Đăng ký tại đây</a>.</p>
+</body>
+</html>
